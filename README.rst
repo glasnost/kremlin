@@ -24,7 +24,7 @@ not be entirely accurate.
 
 * Python 2.7
 * virtualenv_ is strongly recommended
-* For production deployment, a decentw eb server supporting WSGI
+* For production deployment, a decent web server supporting WSGI
 
 
          -- or--
@@ -56,11 +56,11 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 1. ``$ mkdir ~/.python-envs/``
 2. ``$ virtualenv --distribute --no-site-packages ~/.python-envs/kremlin``
 3. ``$ source ~/.python-envs/kremlin/bin/activate``
-4. ``(tryunix)$ pip install SQLAlchemy Flask Flask-SQLAlchemy Flask-Uploads Flask-WTF Jinja2 Pillow``
+4. ``(kremlin)$ pip install SQLAlchemy Flask Flask-SQLAlchemy Flask-Uploads Flask-WTF Jinja2 Pillow``
 5. ``# check out code``
-6. ``(tryunix)$ cd kremlin``
-7. ``(tryunix)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
-8. ``(tryunix)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
+6. ``(kremlin)$ cd kremlin``
+7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
+8. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
 
 
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
