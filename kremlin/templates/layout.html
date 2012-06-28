@@ -12,18 +12,43 @@
     TODO: implement a flash class that holds flashed messages.
 #}
 <!doctype html>
-<html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
     <head>
+        <!-- Standard head -->
         {% block head %}
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='knibutt.css') }}">
         <title>{% block title %}{% endblock %} - glasnost.us</title>
         {% endblock %}
+
+        <!-- Mobile specific stuff -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+        <!-- Dem stylesheets -->
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='base.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='skeleton.css') }}">
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='layout.css') }}">
+
+        <!-- In case of stone age -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Dem favicons -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+        <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+
+
+        <!-- extra head stuff -->
+        {# This may come from a template #}
         {% block extrahead %}{% endblock %}
+
     </head>
     <body>
-        <div id="Container">
-            <div id="Loginbox">
+        <div class="container">
+            <div class="sixteen columns" id="Loginbox">
                 {% if session.logged_in %}
                     {# TODO: Display username. #}
                     Welcome Back. <a href="{{ url_for('logout') }}">Logout</a>
@@ -32,36 +57,36 @@
                     <a href="{{ url_for('register') }}">Register</a>
                 {% endif %}
             </div>
-            <div id="Header">
+            <div id="Header" class="sixteen columns">
                 {% block header %}
-                <img src="{{ url_for('static', filename='logo.png') }}" alt="glasnost logo" />
+                <h1 class="remove-bottom">kremlin</h1>
+                <h5>Magical Everything System - Prototype</h5>
+                <!-- <img src="{{ url_for('static', filename='logo.png') }}" alt="glasnost logo" /> -->
                 {% endblock %}
             </div>
-            <div id="Menu">
-                {% block menu %}
-                <a href="{{ url_for('home_index') }}">home</a> :: 
-                <a href="{{ url_for('entries_index') }}">Imageboard</a>
-                {% endblock %}
-            </div>
-            <div id="Content">
+            <div id="flashbar" class="sixteen columns">
                 {% with messages = get_flashed_messages() %}
                     {% if messages %}
                         {% for message in messages %}
-                            <div class="AlignCenter">{{ message }}</div>
+                        <p>{{ message }}</p>
                         {% endfor %}
                     {% endif %}
                 {% endwith %}
+            </div>
+            <div id="Menu" class="one-third column">
+                {% block menu %}
+                <ul>
+                    <li><a href="{{ url_for('home_index') }}">home</a></li>
+                    <li><a href="{{ url_for('entries_index') }}">Imageboard</a></li>
+                </ul>
+                {% endblock %}
+            </div>
+            <div id="Content" class="one-third column">
                 {% block content %}{% endblock %}
             </div>
-            <div id="Footer">
-                {# 
-                    FIXME: Temporary contents because Knifa is a butt and
-                    this is actually the WORST place ever to put the login button.
-                    Seriously. I shall make it a copyright.
-                #}
-                {% block footer %}
-                Copyright &copy; glasnost.us 2004-2011<br /><br />
-                Made of Python, mod_penis, faggotry and longnecks.
+            <div id="Footer" class="sixteen columns">
+                <p>Copyright &copy; glasnost.us 2004-2011<br /><br />
+                    Made of Python, mod_penis, faggotry and longnecks.</p>
                 {% endblock %}
             </div>
         </div>
