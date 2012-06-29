@@ -36,6 +36,16 @@ def entries_index():
     return render_template('board.html', form=forms.NewPostForm(),
         posts=posts)
 
+@app.route('/logs')
+def logs_index():
+    """ Show irc logs """
+    return "Unimplemented"
+
+@app.route('/services')
+def services_index():
+    return "Unimplemented"
+
+
 @app.route('/images/<int:post_id>')
 def view_post(post_id):
     """ Show post identified by post_id """
