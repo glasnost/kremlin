@@ -12,7 +12,7 @@
 
 """ Module containing form classes and validation, for use with WTForms """
 
-from flaskext.wtf import Form, TextField, TextAreaField, FileField, \
+from flask_wtf import Form, TextField, TextAreaField, FileField, \
         BooleanField, PasswordField, file_allowed, file_required, validators
 
 from kremlin import uploaded_images
