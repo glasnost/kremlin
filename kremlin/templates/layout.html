@@ -22,23 +22,23 @@
     <meta name="viewport" content="width=device-width" />
 
     <!-- Dem stylesheets -->
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='foundation.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='app.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheets/foundation.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='stylesheets/app.css') }}">
 
     <!-- In case of stone age -->
     <!--[if lt IE 9]>
         <link rel="stylesheet" href="{{ url_for('static', filename='ie.css') }}">
     <![endif]-->
 
-    <script src="{{ url_for('static', filename='modernizr.foundation.js') }}"></script>
+    <script src="{{ url_for('static', filename='javascripts/modernizr.foundation.js') }}"></script>
 
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <!-- Dem favicons -->
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename='apple-touch-icon.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
 
     {% endblock %}
 
