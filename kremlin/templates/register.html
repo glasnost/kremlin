@@ -5,7 +5,7 @@
 {% if not session.logged_in %}
     <form action="{{ url_for('register') }}" method=post>
         <dl>
-        {{ form.csrf }}
+        {{ form.hidden_tag() }}
         {{ render_field (form.username) }}
         {{ render_field (form.email) }}
         {{ render_field (form.password) }}

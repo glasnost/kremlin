@@ -1,14 +1,15 @@
+{% from "_formhelpers.html" import render_field %}
 {% extends "layout.html" %}
 {% block title %}Image Board{% endblock %}
 {% block content %}
 <form action="{{ url_for('add_image') }}" method=post enctype=multipart/form-data>
-    {{ form.csrf }}
+    {{ form.hidden_tag() }}
     {% if not session.logged_in %}
-        {{ form.name.label }}{{ form.name(value="Anonymous") }}<br />
+        {{ render_field(form.name) }}<br />
     {% endif %}
-    {{ form.upload.label }}{{ form.upload }}<br/>
-    {{ form.note.label }}{{ form.note }}<br/>
-    {{ form.tags.label }}{{ form.tags }}<br/>
+    {{ render_field(form.upload) }}<br/>
+    {{ render_field(form.note) }}<br/>
+    {{ render_field(form.tags) }}<br/>
     <input type="submit" value="Upload"><br />
 </form>
 <div id='ImageboardPageTop'>
