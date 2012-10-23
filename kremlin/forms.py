@@ -68,5 +68,5 @@ class RegisterForm(Form):
         ]
     )
     confirm = PasswordField(u'Repeat Password')
-    accept_tos = BooleanField(u'I accept the TOS',
-        validators=[validators.Required()])
+#    accept_tos = BooleanField(u'I accept the TOS',
+#        validators=[validators.Required()])
