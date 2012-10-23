@@ -57,7 +57,7 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 2. ``$ virtualenv --distribute --no-site-packages ~/.python-envs/kremlin``
 3. ``$ source ~/.python-envs/kremlin/bin/activate``
 4. ``(kremlin)$ pip install -r requirements.txt``
-5. ``# check out code``
+5. ``(kremlin)$ git clone https://github.com/glasnost/kremlin.git kremlin``
 6. ``(kremlin)$ cd kremlin``
 7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
 8. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
