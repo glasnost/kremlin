@@ -1,0 +1,20 @@
+{% from "_formhelpers.html" import render_field %}
+{% extends "layout.html" %}
+{%block title %}Login{% endblock %}
+{%block content %}
+{% if not session.logged_in %}
+    <form action="{{ url_for('login') }}" method=post>
+        <dl>
+        {{ form.hidden_tag() }}
+        {{ render_field (form.username) }}
+        {{ render_field (form.password) }}
+        </dl>
+        <p><input type="submit" value="Login">
+    </form>
+{% else %}
+    <div id="ImageBoardPageTop">
+        Hi {{ session.username }}. You are already logged in.
+    </div>
+{% endif %}
+{% endblock %}
+
