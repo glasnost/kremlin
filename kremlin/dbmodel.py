@@ -75,7 +75,7 @@ class Post(db.Model):
     user = db.relationship('User',
         backref=db.backref('users', lazy='dynamic'))
 
-    def __init__(self, image, title=None, note=None,\
+    def __init__(self, image, title=None, note=None, \
             pub_date=None, user=None):
         self.image = image
         self.title = title
@@ -99,10 +99,11 @@ class Post(db.Model):
         return '<Post %r>' % self.title
 
 class Image(db.Model):
+    """ Image with metadata and attributes """
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     filename = db.Column(db.String(50))
-    thumbfilename = db.Column(db.String(50));
+    thumbfilename = db.Column(db.String(50))
     sha1sum = db.Column(db.String(40), unique=True) # 40 bytes SHA1
 
     def __init__(self, name, sha1sum):
