@@ -15,8 +15,7 @@ import hashlib, os
 from flask import request, session, render_template, flash, url_for, \
         redirect, send_from_directory
 
-from werkzeug import generate_password_hash, \
-        secure_filename
+from werkzeug import secure_filename
 
 
 from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
@@ -135,29 +134,49 @@ def add_image():
 @app.route('/login', methods=['GET','POST'])
 def login():
     """ Login to imageboard """
-    if request.method == 'POST':
-        #TODO: Validate username
-        pass
-    return "Log in"
+
+    form = forms.LoginForm(request.form)
+    errtxt = "Invalid username or password, please try again."
+
+    if request.method == 'POST' and form.validate_on_submit():
+        user = dbmodel.User.query.filter_by(name=form.username.data).first()
+        if user is None:
+            flash(errtxt)
+            return redirect(url_for('login'))
+        else:
+            if user.check_password(form.password.data):
+                session['logged_in'] = True
+                flash("Hello, %s, you have been logged in." % user.name)
+                return redirect(url_for('home_index'))
+            else:
+                flash(errtxt)
+                return redirect(url_for('login'))
+
+    return render_template('login.html', form=form)
 
 @app.route('/logout')
 def logout():
     """ Logout of imageboard """
     session.pop('logged_in', None)
     flash('Logged out of Kremlin.')
-    return "You have been logged out."
+    return redirect(url_for('home_index'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    """ Register a new user """
+    error = None
+
     form = forms.RegisterForm(request.form)
-    if request.method == 'POST' and form.validate():
+    if request.method == 'POST' and form.validate_on_submit():
+        # FIXME: Use sqlalchemy.exc.IntegrityError, let the database
+        # handle it instead of writing our own shitty test?
         dupe = dbmodel.User.query.filter_by(name=form.username.data).first()
         if dupe:
             flash("Username %s is already taken." % form.username.data)
             return redirect(url_for('register'))
         else:
             user = dbmodel.User(form.username.data, form.email.data,
-                    generate_password_hash(form.password.data))
+                form.password.data)
             db.session.add(user)
             db.session.commit()
             flash("Registration complete! Please login.")

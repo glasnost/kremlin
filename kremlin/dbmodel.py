@@ -14,6 +14,9 @@ from datetime import datetime
 
 import os
 
+from werkzeug.security import generate_password_hash, \
+        check_password_hash
+
 from kremlin import db
 
 # Tags helper table
@@ -26,6 +29,7 @@ tags = db.Table('tags',
 )
 
 class Tag(db.Model):
+    """ Tag class """
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
 
@@ -42,13 +46,17 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True)
     password_hash = db.Column(db.String(120))
 
-    def __init__(self, username, email, password_hash):
+    def __init__(self, username, email, password):
         self.name = username
         self.email = email
-        self.password = password_hash
+        self.password_hash = generate_password_hash(password)
 
     def __repr__(self):
         return '<User %r>' % self.name
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
 
 class Post(db.Model):
     """ Declarative class for Posts database table """
