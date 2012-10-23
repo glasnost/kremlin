@@ -56,7 +56,7 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 1. ``$ mkdir ~/.python-envs/``
 2. ``$ virtualenv --distribute --no-site-packages ~/.python-envs/kremlin``
 3. ``$ source ~/.python-envs/kremlin/bin/activate``
-4. ``(kremlin)$ pip install SQLAlchemy Flask Flask-SQLAlchemy Flask-Uploads Flask-WTF Jinja2 Pillow``
+4. ``(kremlin)$ pip install -r requirements.txt``
 5. ``# check out code``
 6. ``(kremlin)$ cd kremlin``
 7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
