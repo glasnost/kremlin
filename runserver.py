@@ -73,7 +73,9 @@ def main():
 
     # Application is imported at this point because kremlin/__init__.py
     # actually loads the configuration.
-    from kremlin import app
+    from kremlin import app, db_init
+    print "Setting up database..."
+    db_init()
     app.run()
 
 if __name__ == '__main__':
