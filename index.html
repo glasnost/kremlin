@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Kremlin by glasnost</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Kremlin</h1>
+        <h2>The glasnost Image Board and Magical Everything System</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/glasnost/kremlin/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/glasnost/kremlin/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/glasnost/kremlin" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a name="the-kremlin-magical-everything-system" class="anchor" href="#the-kremlin-magical-everything-system"><span class="octicon octicon-link"></span></a>The Kremlin Magical Everything System</h1>
+
+<p>The Magical Everything System does Everything.</p>
+
+<h2>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features:</h2>
+
+<ul>
+<li>Image Board</li>
+<li>Boredom Inhibitor</li>
+<li>Science Experiment</li>
+<li>Operating System Overview</li>
+<li>Arguably alive</li>
+</ul><p>.. danger:: May contain traces of Knifacode(tm)</p>
+
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements:</h2>
+
+<p>These are the requirements for running the application. Unless you are
+sitting there reading this from a tagged release archive, it probably will 
+not be entirely accurate.</p>
+
+<ul>
+<li>Python 2.7</li>
+<li>virtualenv_ is strongly recommended</li>
+<li>
+<p>For production deployment, a decent web server supporting WSGI</p>
+
+<pre><code> -- or--
+</code></pre>
+</li>
+<li><p>gunicorn_ behind something like nginx_.</p></li>
+</ul><p>Python Modules:</p>
+
+<pre><code>
+* Flask_ - Amazing Python Microframework Extraordinaire
+* Jinja2_ - Templating Engine
+* Pillow_ (recommended) _or_ PIL_ - Image manipulation library
+* SQLAlchemy_ - Declarative ORM
+* WTForms_ - Web form helper/library
+
+Flask Modules:
+</code></pre>
+
+<p>.. note:: Being a microframework, it doesn't do much.</p>
+
+<ul>
+<li>Flask-SQLAlchemy</li>
+<li>Flask-Uploads</li>
+<li>Flask-WTF</li>
+</ul><h2>
+<a name="very-hastily-written-hackers-guide-to-poking-at-the-source" class="anchor" href="#very-hastily-written-hackers-guide-to-poking-at-the-source"><span class="octicon octicon-link"></span></a>Very Hastily Written™ Hacker's Guide to Poking at the Source</h2>
+
+<ol>
+<li><code>$ mkdir ~/.python-envs/</code></li>
+<li><code>$ virtualenv --distribute --no-site-packages ~/.python-envs/kremlin</code></li>
+<li><code>$ source ~/.python-envs/kremlin/bin/activate</code></li>
+<li><code>(kremlin)$ pip install -r requirements.txt</code></li>
+<li><code>(kremlin)$ git clone https://github.com/glasnost/kremlin.git kremlin</code></li>
+<li><code>(kremlin)$ cd kremlin</code></li>
+<li><code>(kremlin)$ cp kremlin-example.cfg kremlin.cfg &amp;&amp; vim kremlin.cfg</code></li>
+<li><code>(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py</code></li>
+</ol><p>.. _virtualenv: <a href="http://pypi.python.org/pypi/virtualenv">http://pypi.python.org/pypi/virtualenv</a>
+.. _gunicorn: <a href="http://gunicorn.org/">http://gunicorn.org/</a>
+.. _nginx: <a href="http://nginx.org/">http://nginx.org/</a></p>
+
+<p>.. _Flask: <a href="http://flask.pocoo.org/">http://flask.pocoo.org/</a>
+.. _Jinja2: <a href="http://jinja.pocoo.org/docs/">http://jinja.pocoo.org/docs/</a>
+.. _Pillow: <a href="http://pypi.python.org/pypi/Pillow">http://pypi.python.org/pypi/Pillow</a>
+.. _SQlAlchemy: <a href="http://www.sqlalchemy.org/">http://www.sqlalchemy.org/</a>
+.. _WTForms: <a href="http://wtforms.simplecodes.com/docs/dev/">http://wtforms.simplecodes.com/docs/dev/</a></p>
+
+<p>.. _Flask-SQlAlchemy: <a href="http://packages.python.org/Flask-SQLAlchemy/">http://packages.python.org/Flask-SQLAlchemy/</a>
+.. _Flask-Uploads: <a href="http://packages.python.org/Flask-Uploads/">http://packages.python.org/Flask-Uploads/</a>
+.. _Flask-WTF: <a href="http://packages.python.org/Flask-WTF/">http://packages.python.org/Flask-WTF/</a></p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
