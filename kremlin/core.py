@@ -29,7 +29,7 @@ def home_index():
 def entries_index(page):
     """ Show an index of image thumbnails """
     posts = dbmodel.Post.query.all()
-    pagination = Pagination(page, 20, posts)
+    pagination = forms.Pagination(page, 20, posts)
     return render_template('board.html', form=forms.NewPostForm(),
         posts=posts, pagination=pagination)
 
@@ -74,6 +74,7 @@ def add_image():
     """ Add a new image """
 
     form = forms.NewPostForm()
+    print form.name
 
     if form.validate_on_submit():
         filename = secure_filename(form.upload.file.filename)
