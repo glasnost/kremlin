@@ -17,10 +17,7 @@ from flask import request, session, render_template, flash, url_for, \
 
 from werkzeug import secure_filename
 
-
 from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
-
-
 
 @app.route('/')
 def home_index():
