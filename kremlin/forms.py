@@ -73,7 +73,7 @@ class RegisterForm(Form):
 #    accept_tos = BooleanField(u'I accept the TOS',
 #        validators=[validators.Required()])
 
-class Pagination(object) :
+class Pagination(object):
     def __init__(self, page, per_page, total_count):
         self.page = page
         self.per_page = per_page
@@ -91,7 +91,7 @@ class Pagination(object) :
     def has_next(self):
         return self.page < self.pages
 
-    def iter_pages(self, left_edge = 2, left_current = 2, right_current = 5, right_edge=2):
+    def iter_pages(self, left_edge=2, left_current=2, right_current=5, right_edge=2):
         last = 0;
         for num in xrange(1, self.pages + 1):
             if num <= left_edge or \

@@ -24,13 +24,27 @@ def home_index():
     """ Display the glasnost logo, attempt to replicate old behavior """
     return render_template('home.html')
 
-@app.route('/images')
-def entries_index():
+@app.route('/images', defaults={'page': 1})
+@app.route('/images/page/<int:page>')
+def entries_index(page):
     """ Show an index of image thumbnails """
-    #FIXME: limit with pagination
     posts = dbmodel.Post.query.all()
+    pagination = Pagination(page, 20, posts)
     return render_template('board.html', form=forms.NewPostForm(),
-        posts=posts)
+        posts=posts, pagination=pagination)
+
+def url_for_other_page(page):
+    args = request.view_args.copy()
+    args['page'] = page
+    return url_for(request.endpoint, **args)
+    app.jinja_env.globals['url_for_other_page'] = url_for_other_page
+
+#def entries_index():
+#    """ Show an index of image thumbnails """
+#    #FIXME: limit with pagination
+#    posts = dbmodel.Post.query.all()
+#    return render_template('board.html', form=forms.NewPostForm(),
+#        posts=posts)
 
 @app.route('/logs')
 def logs_index():
