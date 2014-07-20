@@ -30,6 +30,12 @@ def entries_index(page):
     """ Show an index of image thumbnails """
     posts = dbmodel.Post.query.all()
     pagination = forms.Pagination(page, 20, posts)
+
+    print "pagination",pagination.page
+    print "per_page",pagination.per_page
+    print "total_count",pagination.total_count
+    print "total_count length",len(pagination.total_count)
+
     return render_template('board.html', form=forms.NewPostForm(),
         posts=posts, pagination=pagination)
 

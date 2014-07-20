@@ -2,19 +2,24 @@
 {% extends "layout.html" %}
 {% block title %}Image Board{% endblock %}
 {% block content %}
-<form action="{{ url_for('add_image') }}" method=post enctype=multipart/form-data>
-    {{ form.hidden_tag() }}
-    {% if not session.logged_in %}
-        {{ render_field(form.name) }}<br />
-    {% endif %}
-    {{ render_field(form.upload) }}<br/>
-    {{ render_field(form.note) }}<br/>
-    {{ render_field(form.tags) }}<br/>
-    <input type="submit" value="Upload"><br />
-</form>
-<div id='ImageboardPageTop'>
+<div class="form wrapper row">
+    <form action="{{ url_for('add_image') }}" method="post" enctype="multipart/form-data" class="eight columns">
+        {{ form.hidden_tag() }}
+        {% if not session.logged_in %}
+            {{ render_field(form.name) }}<br />
+        {% endif %}
+        {{ render_field(form.upload) }}<br/>
+        {{ render_field(form.note) }}<br/>
+        {{ render_field(form.tags) }}<br/>
+        <input type="submit" value="Upload"><br />
+    </form>
+    <div class="four columns">
+        <h1>Rules</h1>
+    </div>
+</div>
+<div id='ImageboardPageTop row'>
     {% macro render_pagination(pagination) %}
-      <div class=pagination>
+      <div class="pagination">
       {%- for page in pagination.iter_pages() %}
         {% if page %}
           {% if page != pagination.page %}
@@ -23,7 +28,7 @@
             <strong>{{ page }}</strong>
           {% endif %}
         {% else %}
-          <span class=ellipsis>…</span>
+          <span class="ellipsis">…</span>
         {% endif %}
       {%- endfor %}
       {% if pagination.has_next %}
@@ -35,7 +40,7 @@
 </div>
 <div id="ImageboardContainer">
     {% for post in posts %}
-    <div class="ImageboardThumb">
+    <div class="ImageboardThumb four columns">
         <div>
             <a href="{{ url_for('view_post', post_id=post.id) }}">
                 <img src="{{ url_for('send_file', filename=post.image.thumbfilename) }}" />
