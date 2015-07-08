@@ -40,4 +40,3 @@ class Pagination(object):
                 yield num
                 last = num
 
-            last = num

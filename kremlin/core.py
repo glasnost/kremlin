@@ -14,11 +14,8 @@ import hashlib, os
 
 from flask import request, session, render_template, flash, url_for, \
         redirect, send_from_directory
-
 from werkzeug import secure_filename
-
 from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
-
 from pagination import Pagination
 
 @app.route('/')
@@ -31,7 +28,7 @@ def home_index():
 def entries_index(page):
     """ Show an index of image thumbnails """
     posts = dbmodel.Post.query.all()
-    pagination = Pagination(page, 20, posts)
+    pagination = Pagination(page, 2, len(posts))
     return render_template('board.html', form=forms.NewPostForm(),
         posts=posts, pagination=pagination)
 
