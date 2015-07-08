@@ -33,7 +33,7 @@ def usage():
 def main():
     """ Program entry point when ran interactively """
     print "Kremlin Magical Everything System v 0.0.0-None"
-    print "Copyright (c) Glasnost 2010-2011"
+    print "Copyright (c) Glasnost 2010-2015"
     print "-----------------------------------------------"
 
     # If no configuration is specified, use the default.

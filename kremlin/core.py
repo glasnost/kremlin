@@ -17,6 +17,8 @@ from flask import request, session, render_template, flash, url_for, \
 from werkzeug import secure_filename
 from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
 from pagination import Pagination
+import cgitb
+cgitb.enable(format='text')
 
 @app.route('/')
 def home_index():
@@ -28,10 +30,24 @@ def home_index():
 def entries_index(page):
     """ Show an index of image thumbnails """
     posts = dbmodel.Post.query.all()
-    pagination = Pagination(page, 2, len(posts))
+    posts_count = len(posts)
+    pagination = Pagination(page, 1, posts_count)
+    active_posts = get_posts_for_page(posts, 1, posts_count, pagination)
     #import pdb; pdb.set_trace()
     return render_template('board.html', form=forms.NewPostForm(),
-        posts=posts, pagination=pagination)
+        posts=active_posts, pagination=pagination)
+
+def get_posts_for_page(posts, per_page, total_count, pagination):
+    """ Blah """
+    items = []
+    for index, p in enumerate(posts):
+        print index
+        print index+1
+        if index+1 <= pagination.per_page:
+            print p
+            items.append(p)
+    print items
+    return items;
 
 def url_for_other_page(page):
     args = request.view_args.copy()
