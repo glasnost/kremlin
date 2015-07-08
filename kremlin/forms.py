@@ -19,6 +19,8 @@ from kremlin import uploaded_images
 
 from math import ceil
 
+from pagination import Pagination
+
 class NewPostForm(Form):
     """ Post Form """
     name = TextField(u'Name', validators=[validators.required()])
