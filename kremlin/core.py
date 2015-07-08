@@ -13,12 +13,10 @@ import hashlib, os
 
 
 from flask import request, session, render_template, flash, url_for, \
-        redirect, send_from_directory
+        redirect, send_from_directory, abort
 from werkzeug import secure_filename
 from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
 from pagination import Pagination
-import cgitb
-cgitb.enable(format='text')
 
 @app.route('/')
 def home_index():
@@ -29,25 +27,11 @@ def home_index():
 @app.route('/images/page/<int:page>')
 def entries_index(page):
     """ Show an index of image thumbnails """
-    posts = dbmodel.Post.query.all()
-    posts_count = len(posts)
-    pagination = Pagination(page, 1, posts_count)
-    active_posts = get_posts_for_page(posts, 1, posts_count, pagination)
-    #import pdb; pdb.set_trace()
+    posts = dbmodel.Post.query.paginate(page, 25)
+    posts_count = posts.total
+    pagination = Pagination(page, 25, posts_count)
     return render_template('board.html', form=forms.NewPostForm(),
-        posts=active_posts, pagination=pagination)
-
-def get_posts_for_page(posts, per_page, total_count, pagination):
-    """ Blah """
-    items = []
-    for index, p in enumerate(posts):
-        print index
-        print index+1
-        if index+1 <= pagination.per_page:
-            print p
-            items.append(p)
-    print items
-    return items;
+        posts=posts.items, pagination=pagination)
 
 def url_for_other_page(page):
     args = request.view_args.copy()
@@ -207,5 +191,4 @@ def register():
 @app.route('/about')
 def about():
     return "Kremlin Everything System and Boredom Inhibitor v 0.0.0-None"
-
 
