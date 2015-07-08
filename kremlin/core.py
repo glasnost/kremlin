@@ -29,7 +29,7 @@ def entries_index(page):
     """ Show an index of image thumbnails """
     posts = dbmodel.Post.query.all()
     pagination = Pagination(page, 2, len(posts))
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     return render_template('board.html', form=forms.NewPostForm(),
         posts=posts, pagination=pagination)
 
