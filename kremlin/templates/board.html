@@ -13,9 +13,8 @@
     <input type="submit" value="Upload"><br />
 </form>
 <div id='ImageboardPageTop'>
-    {% macro render_pagination(pagination) %}
       <div class=pagination>
-      {%- for page in pagination.iter_pages() %}
+      {% for page in pagination.iter_pages() %}
         {% if page %}
           {% if page != pagination.page %}
             <a href="{{ url_for_other_page(page) }}">{{ page }}</a>
@@ -25,13 +24,12 @@
         {% else %}
           <span class=ellipsis>…</span>
         {% endif %}
-      {%- endfor %}
+      {% endfor %}
       {% if pagination.has_next %}
-        <a href="{{ url_for_other_page(pagination.page + 1)
-          }}">Next &raquo;</a>
+        <a href="{{ url_for_other_page(pagination.page + 1) 
+            }}">Next &raquo;</a>
       {% endif %}
       </div>
-    {% endmacro %}
 </div>
 <div id="ImageboardContainer">
     {% for post in posts %}
