@@ -67,6 +67,9 @@ PIL to support JPEG images. Run this before you run ``pip install`` above:
 
 - ``brew install libjpeg``
 
+If you assumed that you need to install Homebrew as well, you're right! You can
+also install it using MacPorts, if you feel so inclined. Google it.
+
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
 .. _gunicorn: http://gunicorn.org/
 .. _nginx: http://nginx.org/
