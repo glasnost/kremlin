@@ -62,6 +62,10 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
 8. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
 
+If you are installing on OS X, you will need to make additional changes to get
+PIL to support JPEG images. Run this before you run ``pip install`` above:
+
+- ``brew install libjpeg``
 
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
 .. _gunicorn: http://gunicorn.org/
