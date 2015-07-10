@@ -76,7 +76,7 @@ def main():
     from kremlin import app, db_init
     print "Setting up database..."
     db_init()
-    app.run()
+    app.run(debug=True)
 
 if __name__ == '__main__':
     main()
