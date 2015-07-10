@@ -55,7 +55,12 @@
                 $(this).css("height", h * ratio);
             }
         });
-        
+
+        //Toggle/Untoggle EXIF
+        jQuery(".exif-wrapper h2").click(function() {
+            jQuery(".exif-wrapper .exif").toggle();
+        });
+
     });
 </script>
 {% endblock %}

@@ -45,9 +45,5 @@
     });
   }
 
-  //Toggle/Untoggle EXIF
-  $(".exif-wrapper h2").click(function() {
-    $(".exif-wrapper .exif").toggle();
-  });
 
 })(jQuery, this);
