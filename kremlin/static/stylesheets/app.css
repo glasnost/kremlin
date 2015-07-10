@@ -16,12 +16,54 @@
 
 
 /* -----------------------------------------
-   Page Name 1
+   Imageboard Individual Post Page
 ----------------------------------------- */
+.image-post {
 
+}
 
+.img-data {
 
+}
 
+.img-data .filename {
+    
+}
+
+.img-data .filename h1 {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+.img-data .filename .sha1 {
+    font-size: 8px;
+}
+
+.img-data .info {
+
+}
+
+.img-data .exif-wrapper {
+
+}
+
+.img-data .exif-wrapper h2 {
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.img-dat .exif-wrapper h2.active {
+
+}
+
+.img-data .exif-wrapper .exif {
+    display: none;
+}
+
+.img-data .exif-wrapper .exif p {
+    margin: 0;
+    font-size: 12px;
+}
 /* -----------------------------------------
    Page Name 2
 ----------------------------------------- */

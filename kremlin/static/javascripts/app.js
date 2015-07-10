@@ -8,7 +8,7 @@
   $.fn.foundationAlerts           ? $doc.foundationAlerts() : null;
   $.fn.foundationAccordion        ? $doc.foundationAccordion() : null;
   $.fn.foundationTooltips         ? $doc.foundationTooltips() : null;
-  $('input, textarea').placeholder();
+  //$('input, textarea').placeholder();
   
   
   $.fn.foundationButtons          ? $doc.foundationButtons() : null;
@@ -27,7 +27,7 @@
     
   
   
-    $("#featured").orbit();
+    //$("#featured").orbit();
   
 
   // UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE8 SUPPORT AND ARE USING .block-grids
@@ -44,5 +44,10 @@
       }, 0);
     });
   }
+
+  //Toggle/Untoggle EXIF
+  $(".exif-wrapper h2").click(function() {
+    $(".exif-wrapper .exif").toggle();
+  });
 
 })(jQuery, this);

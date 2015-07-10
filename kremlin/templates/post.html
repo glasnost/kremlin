@@ -13,7 +13,7 @@
 </div>
 <div class="three columns img-data">
     <div class="filename">
-        <h1>{{ meta.name }}<h1>
+        <h1>{{ meta.name }}</h1>
         <p class="sha1">{{ meta.sha1sum }}</p>
     </div>
     <ul class="info">
@@ -29,7 +29,9 @@
             <h2>EXIF</h2>
             <div class="exif">
                 {% for k,v in meta.exif.iteritems() %}
-                    <strong>{{ k }}</strong>: {{ v }}
+                    <p>
+                        <strong>{{ k }}</strong>: {{ v }}
+                    </p>
                 {% endfor %}
             </div>
         </div>
