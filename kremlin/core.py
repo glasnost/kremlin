@@ -23,6 +23,7 @@ import cStringIO, StringIO
 from PIL import Image, ExifTags
 import time
 import datetime
+import math
 
 @app.route('/')
 def home_index():
@@ -54,9 +55,19 @@ def view_post(post_id):
     imgmeta = dbmodel.Image.query.get(post.image_id)
     imgmeta.date_created = datetime.datetime.fromtimestamp(imgmeta.created) \
                             .strftime("%d %b %Y %H:%I:%S")
+    imgmeta.size = sizeof_fmt(imgmeta.size)
     comments = dbmodel.Comment.query.filter_by(parent_post_id=post_id)
     return render_template('post.html', post=post, meta=imgmeta, 
                            comments=comments)
+
+
+def sizeof_fmt(num, suffix='B'):
+    for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
+        if abs(num) < 1024.0:
+            return "%3.1f%s%s" % (num, unit, suffix)
+        num /= 1024.0
+    return "%.1f%s%s" % (num, 'Yi', suffix)
+
 
 @app.route('/images/get/<filename>')
 def send_file(filename):
@@ -109,16 +120,15 @@ def add_image():
                     (filename))
             else:
                 metaimagedata = cStringIO.StringIO(filedata)
-                #import pdb; pdb.set_trace()
                 metaimagedata = Image.open(metaimagedata)
 
                 fileHeight = metaimagedata.height
                 fileWidth = metaimagedata.width
                 fileCreated = int(time.time())
-                #fileSize = filedata.Image.size
+                fileSize = os.stat(imagepath).st_size
                 #fileExif = filedata.Image.exif
                 dbimage = dbmodel.Image(filename, filehash, fileCreated,
-                                        fileHeight, fileWidth)
+                                        fileHeight, fileWidth, fileSize)
                 db.session.add(dbimage)
 
                 user = None

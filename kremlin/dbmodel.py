@@ -112,12 +112,13 @@ class Image(db.Model):
     exif = db.Column(db.Text, nullable = True)
     icc = db.Column(db.String(40), nullable = True)
 
-    def __init__(self, name, sha1sum, created, height, width):
+    def __init__(self, name, sha1sum, created, height, width, size):
         self.name = name
         self.sha1sum = sha1sum
         self.created = created
         self.height = height
         self.width = width
+        self.size = size
 
         # FIXME: Ugly, ugly, ugly
         fext = os.path.splitext(self.name)[1]
