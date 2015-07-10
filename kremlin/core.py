@@ -22,6 +22,7 @@ from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
 import cStringIO, StringIO
 from PIL import Image, ExifTags
 import time
+import datetime
 
 @app.route('/')
 def home_index():
@@ -50,8 +51,12 @@ def services_index():
 def view_post(post_id):
     """ Show post identified by post_id """
     post = dbmodel.Post.query.get_or_404(post_id)
+    imgmeta = dbmodel.Image.query.get(post.image_id)
+    imgmeta.date_created = datetime.datetime.fromtimestamp(imgmeta.created) \
+                            .strftime("%d %b %Y %H:%I:%S")
     comments = dbmodel.Comment.query.filter_by(parent_post_id=post_id)
-    return render_template('post.html', post=post, comments=comments)
+    return render_template('post.html', post=post, meta=imgmeta, 
+                           comments=comments)
 
 @app.route('/images/get/<filename>')
 def send_file(filename):

@@ -1,13 +1,29 @@
-{% extends "layout.html" %}
+{% extends "layout_post.html" %}
 {% block title %}Post: {{ post.title }}{% endblock %}
 {% block content %}
-<div class="AlignCenter">
-    <a href="{{ url_for('send_file', filename=post.image.filename) }}">
-    <img class="big-thumb" src="{{ url_for('send_file', filename=post.image.filename) }}" title="{{ post.image.title }}">
-    </a>
-    <br />
-    {{ post.image.note }}
-    <br />
+<div class="nine columns">
+    <div class="AlignCenter">
+        <a href="{{ url_for('send_file', filename=post.image.filename) }}">
+            <img class="big-thumb" src="{{ url_for('send_file', filename=post.image.filename) }}" title="{{ post.image.title }}">
+        </a>
+        <br />
+        {{ post.image.note }}
+        <br />
+    </div>
+</div>
+<div class="three columns img-data">
+    <div class="filename">
+        <h1>{{ meta.name }}<h1>
+        <p class="sha1">{{ meta.sha1sum }}</p>
+    </div>
+    <ul class="info">
+        <li>
+        Posted By: [NAME] on {{ meta.date_created }}
+        </li>
+        <li>
+            {{ meta.height }} x {{ meta.width }} ({{ meta.size }})
+        </li>
+    </ul>
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery.min.js') }}"><\/script>')</script>
