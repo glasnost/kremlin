@@ -18,7 +18,7 @@ from flask import request, session, render_template, flash, url_for, \
 from werkzeug import secure_filename
 
 
-from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
+from kremlin import app, db, dbmodel, forms, utils, uploaded_images
 
 
 
@@ -97,7 +97,7 @@ def add_image():
                 # FIXME: generate thumbnail in a safer way.
                 # This is fairly horrible and I'm sorry.
                 imagepath = uploaded_images.path(''.join([filehash, fileext]))
-                imgutils.mkthumb(imagepath)
+                utils.mkthumb(imagepath)
             except IOError:
                 flash("Oh god a terrible error occured while saving %s" %
                     (filename))
