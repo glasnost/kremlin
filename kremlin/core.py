@@ -19,8 +19,9 @@ from werkzeug import secure_filename
 
 
 from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
-
-
+import cStringIO, StringIO
+from PIL import Image, ExifTags
+import time
 
 @app.route('/')
 def home_index():
@@ -102,7 +103,17 @@ def add_image():
                 flash("Oh god a terrible error occured while saving %s" %
                     (filename))
             else:
-                dbimage = dbmodel.Image(filename, filehash)
+                metaimagedata = cStringIO.StringIO(filedata)
+                #import pdb; pdb.set_trace()
+                metaimagedata = Image.open(metaimagedata)
+
+                fileHeight = metaimagedata.height
+                fileWidth = metaimagedata.width
+                fileCreated = int(time.time())
+                #fileSize = filedata.Image.size
+                #fileExif = filedata.Image.exif
+                dbimage = dbmodel.Image(filename, filehash, fileCreated,
+                                        fileHeight, fileWidth)
                 db.session.add(dbimage)
 
                 user = None

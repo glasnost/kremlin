@@ -105,10 +105,19 @@ class Image(db.Model):
     filename = db.Column(db.String(50))
     thumbfilename = db.Column(db.String(50))
     sha1sum = db.Column(db.String(40), unique=True) # 40 bytes SHA1
+    created = db.Column(db.Integer, nullable = True)
+    height = db.Column(db.Integer, nullable = True)
+    width = db.Column(db.Integer, nullable = True)
+    size = db.Column(db.Integer, nullable = True)
+    exif = db.Column(db.Text, nullable = True)
+    icc = db.Column(db.String(40), nullable = True)
 
-    def __init__(self, name, sha1sum):
+    def __init__(self, name, sha1sum, created, height, width):
         self.name = name
         self.sha1sum = sha1sum
+        self.created = created
+        self.height = height
+        self.width = width
 
         # FIXME: Ugly, ugly, ugly
         fext = os.path.splitext(self.name)[1]
