@@ -18,12 +18,22 @@
     </div>
     <ul class="info">
         <li>
-        Posted By: [NAME] on {{ meta.date_created }}
+            Posted By: [NAME] on {{ meta.date_created }}
         </li>
         <li>
-            {{ meta.height }} x {{ meta.width }} ({{ meta.size }})
+            {{ meta.width }} x {{ meta.height }} ({{ meta.size }})
         </li>
     </ul>
+    {% if meta.exif %}
+        <div class="exif-wrapper">
+            <h2>EXIF</h2>
+            <div class="exif">
+                {% for k,v in meta.exif.iteritems() %}
+                    <strong>{{ k }}</strong>: {{ v }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='jquery.min.js') }}"><\/script>')</script>

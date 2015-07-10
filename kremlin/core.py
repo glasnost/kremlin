@@ -59,6 +59,7 @@ def view_post(post_id):
     imgmeta.date_created = datetime.datetime.fromtimestamp(imgmeta.created) \
                             .strftime("%d %b %Y %H:%I:%S")
     imgmeta.size = sizeof_fmt(imgmeta.size)
+    imgmeta.exif = json.loads(imgmeta.exif)
     comments = dbmodel.Comment.query.filter_by(parent_post_id=post_id)
     return render_template('post.html', post=post, meta=imgmeta, 
                            comments=comments)
