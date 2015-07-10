@@ -14,7 +14,16 @@ import os
 from PIL import Image
 
 def mkthumb(fp, h=128, w=128):
-    """docstring for mkthumb"""
+    """ Create a thumbnail for an image
+
+        fp  filesystem path to the full size image
+        h   height (default is 128)
+        w   width  (default is 128)
+
+        The thumbnail will be unceremoniously dumped in the same
+        directory with 'thumbnail' between the file name and extension.
+
+     """
 
     size = (h, w)
     f, ext = os.path.splitext(fp)

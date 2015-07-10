@@ -85,7 +85,7 @@ def add_image():
             # Save file to filesystem
 
             # Rewind file, it was read() by the SHA1 checksum
-            # routine
+            # routine. By the way this is gross and I'm sorry.
             form.upload.file.seek(0)
 
             # Proceed with storage
