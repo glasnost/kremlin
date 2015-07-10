@@ -20,10 +20,13 @@ from werkzeug import secure_filename
 
 from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
 import cStringIO, StringIO
+import PIL
 from PIL import Image, ExifTags
+from PIL.ExifTags import TAGS, GPSTAGS
 import time
 import datetime
 import math
+import json
 
 @app.route('/')
 def home_index():
@@ -121,14 +124,24 @@ def add_image():
             else:
                 metaimagedata = cStringIO.StringIO(filedata)
                 metaimagedata = Image.open(metaimagedata)
+                exif = None
+
+                if metaimagedata.format == 'JPEG':
+                    if metaimagedata._getexif():
+                        exif = {
+                            PIL.ExifTags.TAGS[k]: v
+                            for k, v in metaimagedata._getexif().items()
+                            if k in PIL.ExifTags.TAGS
+                        }
 
                 fileHeight = metaimagedata.height
                 fileWidth = metaimagedata.width
                 fileCreated = int(time.time())
                 fileSize = os.stat(imagepath).st_size
-                #fileExif = filedata.Image.exif
+                fileExif = json.dumps(exif)
                 dbimage = dbmodel.Image(filename, filehash, fileCreated,
-                                        fileHeight, fileWidth, fileSize)
+                                        fileHeight, fileWidth, fileSize,
+                                        fileExif)
                 db.session.add(dbimage)
 
                 user = None
