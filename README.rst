@@ -62,13 +62,14 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
 8. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
 
-If you are installing on OS X, you will need to make additional changes to get
-PIL to support JPEG images. Run this before you run ``pip install`` above:
+.. Mac OS X:: you will need additional dependencies before Pillow builds
+   correctly.
 
-- ``brew install libjpeg``
+Run this before you run ``pip install`` above:
 
-If you assumed that you need to install Homebrew as well, you're right! You can
-also install it using MacPorts, if you feel so inclined. Google it.
+``brew install libjpeg``
+
+You will of course need Brew_ installed.
 
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
 .. _gunicorn: http://gunicorn.org/
@@ -83,4 +84,6 @@ also install it using MacPorts, if you feel so inclined. Google it.
 .. _Flask-SQlAlchemy: http://packages.python.org/Flask-SQLAlchemy/
 .. _Flask-Uploads: http://packages.python.org/Flask-Uploads/
 .. _Flask-WTF: http://packages.python.org/Flask-WTF/
+
+.. _Brew: http://brew.sh
 
