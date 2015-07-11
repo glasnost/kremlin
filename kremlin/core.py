@@ -109,8 +109,8 @@ def add_image():
                     (filename))
             else:
                 proc_data = imgutils.process_metadata(filedata, imagepath)
-                dbimage = dbmodel.Image(filename, filehash, proc_data[0],
-                                        proc_data[1], proc_data[2],
+                dbimage = dbmodel.Image(filename, filehash, proc_data[2],
+                                        proc_data[0], proc_data[1],
                                         proc_data[3], proc_data[4])
                 db.session.add(dbimage)
 
