@@ -62,7 +62,7 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
 8. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
 
-.. Mac OS X:: you will need additional dependencies before Pillow builds
+.. note:: On Mac OS Xyou will need additional dependencies before Pillow builds
    correctly.
 
 Run this before you run ``pip install`` above:
