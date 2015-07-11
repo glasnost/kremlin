@@ -19,14 +19,7 @@ from werkzeug import secure_filename
 
 
 from kremlin import app, db, dbmodel, forms, imgutils, uploaded_images
-import cStringIO, StringIO
-import PIL
-from PIL import Image, ExifTags
-from PIL.ExifTags import TAGS, GPSTAGS
-import time
-import datetime
-import math
-import json
+import datetime, json
 
 @app.route('/')
 def home_index():
@@ -58,19 +51,11 @@ def view_post(post_id):
     imgmeta = dbmodel.Image.query.get(post.image_id)
     imgmeta.date_created = datetime.datetime.fromtimestamp(imgmeta.created) \
                             .strftime("%d %b %Y %H:%I:%S")
-    imgmeta.size = sizeof_fmt(imgmeta.size)
+    imgmeta.size = imgutils.sizeof_fmt(imgmeta.size)
     imgmeta.exif = json.loads(imgmeta.exif)
     comments = dbmodel.Comment.query.filter_by(parent_post_id=post_id)
-    return render_template('post.html', post=post, meta=imgmeta, 
+    return render_template('post.html', post=post, meta=imgmeta,
                            comments=comments)
-
-
-def sizeof_fmt(num, suffix='B'):
-    for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
-        if abs(num) < 1024.0:
-            return "%3.1f%s%s" % (num, unit, suffix)
-        num /= 1024.0
-    return "%.1f%s%s" % (num, 'Yi', suffix)
 
 
 @app.route('/images/get/<filename>')
@@ -123,26 +108,10 @@ def add_image():
                 flash("Oh god a terrible error occured while saving %s" %
                     (filename))
             else:
-                metaimagedata = cStringIO.StringIO(filedata)
-                metaimagedata = Image.open(metaimagedata)
-                exif = None
-
-                if metaimagedata.format == 'JPEG':
-                    if metaimagedata._getexif():
-                        exif = {
-                            PIL.ExifTags.TAGS[k]: v
-                            for k, v in metaimagedata._getexif().items()
-                            if k in PIL.ExifTags.TAGS
-                        }
-
-                fileHeight = metaimagedata.height
-                fileWidth = metaimagedata.width
-                fileCreated = int(time.time())
-                fileSize = os.stat(imagepath).st_size
-                fileExif = json.dumps(exif)
-                dbimage = dbmodel.Image(filename, filehash, fileCreated,
-                                        fileHeight, fileWidth, fileSize,
-                                        fileExif)
+                proc_data = imgutils.process_metadata(filedata, imagepath)
+                dbimage = dbmodel.Image(filename, filehash, proc_data[0],
+                                        proc_data[1], proc_data[2],
+                                        proc_data[3], proc_data[4])
                 db.session.add(dbimage)
 
                 user = None
