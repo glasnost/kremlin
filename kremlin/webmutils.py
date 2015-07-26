@@ -8,6 +8,7 @@
                    Kremlin Magical Everything System
                Glasnost Image Board and Boredom Inhibitor
 
+Provides a set of utilities to implement WebM posting support.
 """
 import os, subprocess
 
@@ -25,7 +26,7 @@ def checkwebm(fp):
   out = proc.communicate()
   # Check for -1, if it exists return True
   searchres = out.find("vp8");
-  if searchres == -1:
+  if searchres > -1:
     return True
   else:
     return False
@@ -47,6 +48,7 @@ def checkforaudio(fp):
   else:
     return False
 
+
 def mkthumbfromwebm(fp,  h=128, w=128):
   """
   Create the image from a webm at a random second within the first 30 percent
@@ -65,5 +67,6 @@ def mkthumbfromwebm(fp,  h=128, w=128):
 
 def destroyfile(fp):
   """
-  WATCH THIS RARE PEPE GET DESTROYED
+  Destroys an file if it does not meet the criteria we expect. Only the blackest
+  of metal should be played during the ritual.
   """

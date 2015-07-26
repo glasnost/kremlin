@@ -18,7 +18,7 @@ Requirements:
 -------------
 
 These are the requirements for running the application. Unless you are
-sitting there reading this from a tagged release archive, it probably will 
+sitting there reading this from a tagged release archive, it probably will
 not be entirely accurate.
 
 
@@ -30,6 +30,8 @@ not be entirely accurate.
          -- or--
 
 * gunicorn_ behind something like nginx_.
+
+For WebM support you will need to install ffmpeg_ and libvpx_
 
 Python Modules:
 ~~~~~~~~~~~~~~~
@@ -62,7 +64,7 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
 8. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
 
-.. note:: On Mac OS X you will need additional dependencies before Pillow 
+.. note:: On Mac OS X you will need additional dependencies before Pillow
           builds correctly.
 
 Run this before you run ``pip install`` above:
@@ -80,6 +82,8 @@ You will of course need Brew_ installed.
 .. _Pillow: http://pypi.python.org/pypi/Pillow
 .. _SQlAlchemy: http://www.sqlalchemy.org/
 .. _WTForms: http://wtforms.simplecodes.com/docs/dev/
+.. _ffmpeg: https://www.ffmpeg.org/
+.. _libvpx: https://trac.ffmpeg.org/wiki/Encode/VP8
 
 .. _Flask-SQlAlchemy: http://packages.python.org/Flask-SQLAlchemy/
 .. _Flask-Uploads: http://packages.python.org/Flask-Uploads/
