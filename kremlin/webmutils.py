@@ -18,8 +18,8 @@ from PIL import Image
 def checkwebm(fp):
   """
   Check the file using ffprobe to confirm that the file is a WebM. If not,
-  destroy the file and return a 403.
-  """
+  reject it
+  """.
   runtime = ['ffprobe']
   runtime.append(fp)
   proc = subprocess.Popen(runtime, stdout=subprocess.PIPE)
@@ -49,10 +49,9 @@ def checkforaudio(fp):
     return False
 
 
-def mkthumbfromwebm(fp,  h=128, w=128):
+def mkthumbfromwebm(fp, h=128, w=128):
   """
-  Create the image from a webm at a random second within the first 30 percent
-  of its runtime (the Wadsworth constant)
+  Create the image from a webm at the first second of playback
 
   fp  filesystem path to the full size image
   h   height (default is 128)
@@ -63,6 +62,12 @@ def mkthumbfromwebm(fp,  h=128, w=128):
 
   ffmpeg with libvpx is required for this to work
   """
+  runtime = ['ffmpeg', '-i']
+  runtime.append(fp);
+  runtime.append('-ss 00:00:01.01 -vframes 1 outputtemp.png')
+  out = proc.communicate()
+  # Confirm output successful if so return fp for outputtemp
+
 
 
 def destroyfile(fp):
