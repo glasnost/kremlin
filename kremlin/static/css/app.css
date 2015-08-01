@@ -1,0 +1,23 @@
+.resist-logo {
+  max-width: 85px !important;
+}
+
+.heading-logo {
+}
+
+.heading-logo h1 {
+  background: url("../img/logo.png") no-repeat left top;
+  width: 450px;
+  height: 100px;
+  display: block;
+}
+
+.heading-logo h1 a {
+  display: block;
+  width: 450px;
+  height: 100px;
+}
+
+.heading-logo h1 a span {
+  display: none;
+}

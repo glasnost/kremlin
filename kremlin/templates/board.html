@@ -3,7 +3,7 @@
 {% block title %}Image Board{% endblock %}
 {% block content %}
 <div class="row">
-    <section class="large-12 columns">
+    <section class="large-6 large-centered columns">
         <h2>Add new post</h2>
         <form action="{{ url_for('add_image') }}" method=post enctype=multipart/form-data>
             {{ form.hidden_tag() }}

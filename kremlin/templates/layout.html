@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width" />
 
     <!-- Dem stylesheets -->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/normalize.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/foundation.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/app.css') }}">
 
@@ -31,6 +32,11 @@
     <![endif]-->
 
     <script src="{{ url_for('static', filename='js/vendor/modernizr.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/jquery.cookie.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/placeholder.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/vendor/fastclick.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
 
     <!--[if lt IE 9]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -60,15 +66,19 @@
         </div>
     </div>
     <div class="row">
-        <div id="Header" class="large-12 columns">
+        <div id="Header">
             {% block header %}
-            <div class="large-2 columns">
-                <h1>kremlin</h1>
+            <div class="large-1 columns">
+                <img src="{{ url_for('static', filename='img/resist.png') }}" class="resist-logo"/>
             </div>
-            <div class="large-10 columns">
-                <h5>Magical Everything System - Prototype</h5>
+            <div class="large-11 columns heading-logo">
+                <h1>
+                    <a href="/">
+                        <span>Glasnost</span>
+                    </a>
+                </h1>
             </div>
-            <!-- <img src="{{ url_for('static', filename='logo.png') }}" alt="glasnost logo" /> -->
+            <!-- <img src="{{ url_for('static', filename='img/logo.png') }}" alt="glasnost logo" /> -->
             {% endblock %}
         </div>
     </div>
