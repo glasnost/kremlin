@@ -2,36 +2,43 @@
 {% extends "layout.html" %}
 {% block title %}Image Board{% endblock %}
 {% block content %}
-<form action="{{ url_for('add_image') }}" method=post enctype=multipart/form-data>
-    {{ form.hidden_tag() }}
-    {% if not session.logged_in %}
-        {{ render_field(form.name) }}<br />
-    {% endif %}
-    {{ render_field(form.upload) }}<br/>
-    {{ render_field(form.note) }}<br/>
-    {{ render_field(form.tags) }}<br/>
-    <input type="submit" value="Upload"><br />
-</form>
-<div id='ImageboardPageTop'>
-    {# TODO: Paginate like a motherfucker #}
-    Hi this is where pagination will go
+<div class="row">
+    <section class="large-12 columns">
+        <h2>Add new post</h2>
+        <form action="{{ url_for('add_image') }}" method=post enctype=multipart/form-data>
+            {{ form.hidden_tag() }}
+            {% if not session.logged_in %}
+                {{ render_field(form.name) }}<br />
+            {% endif %}
+            {{ render_field(form.upload) }}<br/>
+            {{ render_field(form.note) }}<br/>
+            {{ render_field(form.tags) }}<br/>
+            <input type="submit" value="Upload"><br />
+        </form>
+    </section>
 </div>
-<div id="ImageboardContainer">
-    {% for post in posts %}
-    <div class="ImageboardThumb">
-        <div>
-            <a href="{{ url_for('view_post', post_id=post.id) }}">
-                <img src="{{ url_for('send_file', filename=post.image.thumbfilename) }}" />
-            </a>
-            <br />
-        </div>
-        {{ post.title }} by
-        {% if not post.user.name %}
-        <em>Anonymous</em>
-        {% else %}
-            {{ post.user.name }}
-        {% endif %}
+<div class="row">
+    <div id='ImageboardPageTop' class="large-12 columns">
+        {# TODO: Paginate like a motherfucker #}
+        Hi this is where pagination will go
     </div>
-    {% endfor %}
+    <ul id="ImageboardContainer" class="large-block-grid-4">
+        {% for post in posts %}
+        <li class="ImageboardThumb">
+            <div>
+                <a href="{{ url_for('view_post', post_id=post.id) }}">
+                    <img src="{{ url_for('send_file', filename=post.image.thumbfilename) }}" />
+                </a>
+                <br />
+            </div>
+            {{ post.title }} by
+            {% if not post.user.name %}
+            <em>Anonymous</em>
+            {% else %}
+                {{ post.user.name }}
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
