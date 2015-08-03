@@ -62,6 +62,14 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
 8. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
 
+.. note:: On Mac OS X you will need additional dependencies before Pillow 
+          builds correctly.
+
+Run this before you run ``pip install`` above:
+
+``brew install libjpeg``
+
+You will of course need Brew_ installed.
 
 .. _virtualenv: http://pypi.python.org/pypi/virtualenv
 .. _gunicorn: http://gunicorn.org/
@@ -76,4 +84,6 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 .. _Flask-SQlAlchemy: http://packages.python.org/Flask-SQLAlchemy/
 .. _Flask-Uploads: http://packages.python.org/Flask-Uploads/
 .. _Flask-WTF: http://packages.python.org/Flask-WTF/
+
+.. _Brew: http://brew.sh
 
