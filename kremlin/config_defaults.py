@@ -29,4 +29,6 @@ WTF_CSRF_ENABLED = True # WTForms Cross Site Request Forgery Prevention
 
 UPLOADED_IMAGES_DEST = ""
 
+SQLALCHEMY_TRACK_MODIFICATIONS = False # Disable for production
+
 #UPLOAD_DEFAULT_URL="..."
