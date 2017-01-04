@@ -19,7 +19,7 @@ from kremlin import uploaded_images
 
 class NewPostForm(Form):
     """ Post Form """
-    name = TextField(u'Name', validators=[validators.required()])
+    name = TextField('Name', validators=[validators.required()])
 
     upload = FileField("Image File",
         validators=[
@@ -28,45 +28,45 @@ class NewPostForm(Form):
         ]
     )
 
-    note = TextAreaField(u'Note/Comment', validators=[validators.optional()])
+    note = TextAreaField('Note/Comment', validators=[validators.optional()])
 
-    tags = TextField(u'Tags (separated by space)',
+    tags = TextField('Tags (separated by space)',
             validators=[validators.optional()]
         )
 
 class NewCommentForm(Form):
     """ Comment Form """
-    name = TextField(u'Name', validators=[validators.required()])
-    body = TextAreaField(u'Comment', validators=[validators.required()])
+    name = TextField('Name', validators=[validators.required()])
+    body = TextAreaField('Comment', validators=[validators.required()])
 
 class LoginForm(Form):
     """ Login form for Kremlin application """
-    username = TextField(u'Name', validators=[validators.required()])
-    password = PasswordField(u'Password',
+    username = TextField('Name', validators=[validators.required()])
+    password = PasswordField('Password',
         validators=[validators.Required()]
     )
 
 class RegisterForm(Form):
     """ Registration Form """
-    username = TextField(u'Username',
+    username = TextField('Username',
         validators=[
             validators.Required(),
             validators.Length(min=3, max=25),
         ]
     )
-    email = TextField(u'Email Address',
+    email = TextField('Email Address',
         validators=[
             validators.Required(),
             validators.Length(min=6, max=50),
             validators.Email(),
         ]
     )
-    password = PasswordField(u'Password',
+    password = PasswordField('Password',
         validators = [
             validators.Required(),
             validators.EqualTo('confirm', message='Passwords must match!'),
         ]
     )
-    confirm = PasswordField(u'Repeat Password')
+    confirm = PasswordField('Repeat Password')
 #    accept_tos = BooleanField(u'I accept the TOS',
 #        validators=[validators.Required()])
