@@ -54,7 +54,7 @@ Very Hastily Written™ Hacker's Guide to Poking at the Source
 -------------------------------------------------------------
 
 1. ``$ mkdir ~/.python-envs/``
-2. ``$ virtualenv --distribute --no-site-packages ~/.python-envs/kremlin``
+2. ``$ virtualenv ~/.python-envs/kremlin``
 3. ``$ source ~/.python-envs/kremlin/bin/activate``
 4. ``(kremlin)$ pip install -r requirements.txt``
 5. ``(kremlin)$ git clone https://github.com/glasnost/kremlin.git kremlin``
