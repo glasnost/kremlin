@@ -15,7 +15,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 
-from wtforms import TextField, TextAreaField, BooleanField, PasswordField
+from wtforms import StringField, TextAreaField, BooleanField, PasswordField
 from wtforms.validators import DataRequired, Optional, Length, Email, \
         EqualTo
 
@@ -23,7 +23,7 @@ from kremlin import uploaded_images
 
 class NewPostForm(FlaskForm):
     """ Post Form """
-    name = TextField('Name', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired()])
 
     upload = FileField("Image File",
         validators=[
@@ -34,31 +34,31 @@ class NewPostForm(FlaskForm):
 
     note = TextAreaField('Note/Comment', validators=[Optional()])
 
-    tags = TextField('Tags (separated by space)',
+    tags = StringField('Tags (separated by space)',
             validators=[Optional()]
         )
 
 class NewCommentForm(FlaskForm):
     """ Comment Form """
-    name = TextField('Name', validators=[DataRequired()])
+    name = StringField('Name', validators=[DataRequired()])
     body = TextAreaField('Comment', validators=[DataRequired()])
 
 class LoginForm(FlaskForm):
     """ Login form for Kremlin application """
-    username = TextField('Name', validators=[DataRequired()])
+    username = StringField('Name', validators=[DataRequired()])
     password = PasswordField('Password',
         validators=[DataRequired()]
     )
 
 class RegisterForm(FlaskForm):
     """ Registration Form """
-    username = TextField('Username',
+    username = StringField('Username',
         validators=[
             DataRequired(),
             Length(min=3, max=25),
         ]
     )
-    email = TextField('Email Address',
+    email = StringField('Email Address',
         validators=[
             DataRequired(),
             Length(min=6, max=50),
