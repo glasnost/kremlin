@@ -44,7 +44,7 @@ class KremlinTestCase(unittest.TestCase):
         kremlin.app.config['UPLOADED_IMAGES_DEST'] = self.imgdir
 
         # Generate unique secret key for the duration of the test
-        kremlin.app.config['SECRET_KEY'] = os.urandom(24).encode('hex')
+        kremlin.app.config['SECRET_KEY'] = os.urandom(24).hex()
 
         # Setup in-memory sqlite3 database for testing
         kremlin.app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite://"
@@ -88,16 +88,16 @@ class KremlinTestCase(unittest.TestCase):
             password="hunter2",
             confirm="hunter2",
             )
-        assert 'Registration complete! Please login.' in rv.data
+        assert b'Registration complete! Please login.' in rv.data
 
         rv = self._login(
             username="jsmith",
             password='hunter2',
         )
-        assert 'Hello, jsmith, you have been logged in.' in rv.data
+        assert b'Hello, jsmith, you have been logged in.' in rv.data
 
         rv = self._logout()
-        assert 'Logged out of Kremlin.' in rv.data
+        assert b'Logged out of Kremlin.' in rv.data
 
 
 
