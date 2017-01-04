@@ -4,9 +4,10 @@
 Kremlin unit tests
 """
 
+import binascii
 import os
-import unittest
 import tempfile
+import unittest
 import shutil
 import sys
 
@@ -44,7 +45,7 @@ class KremlinTestCase(unittest.TestCase):
         kremlin.app.config['UPLOADED_IMAGES_DEST'] = self.imgdir
 
         # Generate unique secret key for the duration of the test
-        kremlin.app.config['SECRET_KEY'] = os.urandom(24).hex()
+        kremlin.app.config['SECRET_KEY'] = binascii.hexlify(os.urandom(24))
 
         # Setup in-memory sqlite3 database for testing
         kremlin.app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite://"
