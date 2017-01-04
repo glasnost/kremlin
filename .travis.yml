@@ -5,7 +5,7 @@ python:
     - "3.5"
     - "3.6"
     - "pypy3"
-    - "pypy-5.5"
+    - "pypy3-5.5.0"
 install:
     - pip install -U pip
     - pip install -r requirements.txt
