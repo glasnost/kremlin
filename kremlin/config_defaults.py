@@ -25,7 +25,7 @@ LOGGER_NAME = "kremlin" # Main logger name
 
 MAX_CONTENT_LENGTH = 32 * 1024 * 1024 # 32 Megabytes
 
-CSRF_ENABLED = True # WTForms Cross Site Request Forgery Prevention
+WTF_CSRF_ENABLED = True # WTForms Cross Site Request Forgery Prevention
 
 UPLOADED_IMAGES_DEST = ""
 

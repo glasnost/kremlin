@@ -65,9 +65,9 @@ def add_image():
     form = forms.NewPostForm()
 
     if form.validate_on_submit():
-        filename = secure_filename(form.upload.file.filename)
+        filename = secure_filename(form.upload.data.filename)
         fileext = os.path.splitext(filename)[1]
-        filedata = form.upload.file.stream.read()
+        filedata = form.upload.data.stream.read()
 
         # Calculate SHA1 checksum
         h = hashlib.new('sha1')
@@ -86,11 +86,11 @@ def add_image():
 
             # Rewind file, it was read() by the SHA1 checksum
             # routine. By the way this is gross and I'm sorry.
-            form.upload.file.seek(0)
+            form.upload.data.seek(0)
 
             # Proceed with storage
             try:
-                uploaded_images.save(storage=form.upload.file,
+                uploaded_images.save(storage=form.upload.data,
                                      name=''.join([filehash, '.']),
                                     )
 
