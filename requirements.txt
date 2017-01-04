@@ -8,7 +8,6 @@ Jinja2==2.8.1
 MarkupSafe==0.23
 olefile==0.43
 Pillow==4.0.0
-pkg-resources==0.0.0
 SQLAlchemy==1.1.4
 Werkzeug==0.11.15
 WTForms==2.1
