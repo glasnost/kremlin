@@ -4,8 +4,10 @@ python:
     - "3.4"
     - "3.5"
     - "3.6"
+    - "pypy3"
+    - "pypy-5.5"
 install:
-    - python -m pip install -U pip
+    - pip install -U pip
     - pip install -r requirements.txt
 script:
     - python runtests.py
