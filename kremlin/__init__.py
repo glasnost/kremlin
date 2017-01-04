@@ -11,7 +11,7 @@
 """
 
 from flask import Flask
-from flaskext.uploads import configure_uploads, UploadSet, IMAGES
+from flask_uploads import configure_uploads, UploadSet, IMAGES
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
