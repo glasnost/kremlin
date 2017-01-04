@@ -54,6 +54,9 @@ class KremlinTestCase(unittest.TestCase):
 
         self.app = kremlin.app.test_client()
 
+        # Use logo from static files as test image fixture
+        self.testfilepath = "kremlin/static/images/logo.png"
+
 
     def tearDown(self):
         """ Tear down test fixtures and delete everything """
@@ -79,6 +82,13 @@ class KremlinTestCase(unittest.TestCase):
             confirm=confirm,
         ), follow_redirects=True)
 
+    def _newpost(self, uploadfile, note=None, username=None, tags=None):
+        return self.app.post('/images/add/', data=dict(
+            name=username,
+            note=note,
+            upload=uploadfile,
+            tags=tags,
+        ), follow_redirects=True)
 
     def test_basic_auth(self):
         """ Test basic user authentication """
@@ -100,6 +110,15 @@ class KremlinTestCase(unittest.TestCase):
         rv = self._logout()
         assert b'Logged out of Kremlin.' in rv.data
 
+    def test_post_anon(self):
+        """ Test anonymous post functionality """
+        rv = None
+
+        with open(self.testfilepath, "br") as testfile:
+            rv = self._newpost(uploadfile=testfile, note="Test Image",
+                username="TestyMcTest")
+
+        assert b'Image successfully posted!' in rv.data
 
 
 def usage():
