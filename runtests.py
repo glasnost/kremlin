@@ -147,9 +147,8 @@ def main():
 
           """)
 
-    # Build and run test suite for finer control
-    suite = unittest.TestLoader().loadTestsFromTestCase(KremlinTestCase)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    # Fire off all unit tests with high verbosity
+    unittest.main(verbosity=2)
 
 if __name__ == '__main__':
     main()
