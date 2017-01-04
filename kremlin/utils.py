@@ -28,6 +28,6 @@ def mkthumb(fp, h=128, w=128):
     size = (h, w)
     f, ext = os.path.splitext(fp)
 
-    im = Image.open(fp)
-    im.thumbnail(size, Image.ANTIALIAS)
-    im.save('.thumbnail'.join([f, ext]))
+    with Image.open(fp) as im:
+        im.thumbnail(size, Image.ANTIALIAS)
+        im.save('.thumbnail'.join([f, ext]))
