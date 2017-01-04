@@ -22,8 +22,8 @@ sitting there reading this from a tagged release archive, it probably will
 not be entirely accurate.
 
 
-* Python 2.7
-* virtualenv_ is strongly recommended
+* Python 3
+* Python 3 venv is strongly recommended
 * For production deployment, a decent web server supporting WSGI
 
 
@@ -53,14 +53,13 @@ Flask Modules:
 Very Hastily Written™ Hacker's Guide to Poking at the Source
 -------------------------------------------------------------
 
-1. ``$ mkdir ~/.python-envs/``
-2. ``$ virtualenv ~/.python-envs/kremlin``
-3. ``$ source ~/.python-envs/kremlin/bin/activate``
-4. ``(kremlin)$ pip install -r requirements.txt``
-5. ``(kremlin)$ git clone https://github.com/glasnost/kremlin.git kremlin``
-6. ``(kremlin)$ cd kremlin``
-7. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
-8. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
+1. ``$ python3 -m venv --clear .env``
+2. ``$ source .env/bin/activate``
+3. ``(kremlin)$ pip install -r requirements.txt``
+4. ``(kremlin)$ git clone https://github.com/glasnost/kremlin.git kremlin``
+5. ``(kremlin)$ cd kremlin``
+6. ``(kremlin)$ cp kremlin-example.cfg kremlin.cfg && vim kremlin.cfg``
+7. ``(kremlin)$ KREMLIN_CONFIGURATION=$(pwd)/kremlin.cfg python runserver.py``
 
 .. note:: On Mac OS X you will need additional dependencies before Pillow 
           builds correctly.
@@ -71,13 +70,14 @@ Run this before you run ``pip install`` above:
 
 You will of course need Brew_ installed.
 
-.. _virtualenv: http://pypi.python.org/pypi/virtualenv
+.. _venv: https://docs.python.org/3/library/venv.html
 .. _gunicorn: http://gunicorn.org/
 .. _nginx: http://nginx.org/
 
 .. _Flask: http://flask.pocoo.org/
 .. _Jinja2: http://jinja.pocoo.org/docs/
 .. _Pillow: http://pypi.python.org/pypi/Pillow
+.. _PIL: http://www.pythonware.com/products/pil/
 .. _SQlAlchemy: http://www.sqlalchemy.org/
 .. _WTForms: http://wtforms.simplecodes.com/docs/dev/
 
