@@ -2,6 +2,7 @@ The Kremlin Magical Everything System
 ======================================
 
 The Magical Everything System does Everything.
+
 .. image:: https://travis-ci.org/glasnost/kremlin.svg?branch=master
     :target: https://travis-ci.org/glasnost/kremlin
 
