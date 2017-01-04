@@ -35,9 +35,9 @@ class KremlinTestCase(unittest.TestCase):
         try:
             self.imgdir = tempfile.mkdtemp(prefix="kremlin-test_")
         except IOError as e:
-            print "I/O Error({0}) during mkdtemp: {1}".format(
+            print("I/O Error({0}) during mkdtemp: {1}".format(
                     e.errno, e.strerror
-                )
+                ))
             self.fail()
 
 
@@ -103,7 +103,7 @@ class KremlinTestCase(unittest.TestCase):
 
 def usage():
     """ Print interactive usage help """
-    print "Usage: {0} <configuration file>".format(sys.argv[0], sys.argv[1])
+    print("Usage: {0} <configuration file>".format(sys.argv[0], sys.argv[1]))
 
 
 def main():
@@ -113,15 +113,15 @@ def main():
     # Most settings are actually overriden by the test suite's setUp()
     # method.
     if len(sys.argv) < 2:
-        if not os.environ.has_key('KREMLIN_CONFIGURATION'):
+        if 'KREMLIN_CONFIGURATION' not in os.environ:
             os.environ['KREMLIN_CONFIGURATION'] = \
                     os.path.abspath('kremlin-example.cfg')
         elif len(sys.argv) == 2:
             if sys.argv[1].startswith("-"):
                 sys.exit(1)
             else:
-                if os.environ.has_key('KREMLIN_CONFIGURATION'):
-                    print "Warning! Overriding config file environment value!"
+                if 'KREMLIN_CONFIGURATION' in os.environ:
+                    print("Warning! Overriding config file environment value!")
 
                 os.environ['KREMLIN_CONFIGURATION'] = sys.argv[1]
         else:
@@ -131,7 +131,7 @@ def main():
     # Attempt to further heighten the test running experience with
     # a horrible ASCII banner. Feel free to be hit by a strong feeling
     # of elation.
-    print """
+    print("""
                #   # ####  ##### #   # ##### #   # #   #
                #  #  #   # #     ## ##  #  # #  ## #   #
                ###   ####  ####  # # #  #  # # # # #####
@@ -145,7 +145,7 @@ def main():
                         - EXECUTING TEST SUITE -
                         ------------------------
 
-          """
+          """)
 
     # Build and run test suite for finer control
     suite = unittest.TestLoader().loadTestsFromTestCase(KremlinTestCase)
