@@ -30,7 +30,7 @@ class KremlinTestCase(unittest.TestCase):
         kremlin.app.config['TESTING'] = True
 
         # Disable CSRF during testing
-        kremlin.app.config['CSRF_ENABLED'] = False
+        kremlin.app.config['WTF_CSRF_ENABLED'] = False
 
         try:
             self.imgdir = tempfile.mkdtemp(prefix="kremlin-test_")
